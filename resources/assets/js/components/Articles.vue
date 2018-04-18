@@ -1,8 +1,14 @@
 <template>
   <div>
     <h2 class="mb-2">Articles</h2>
-    <form class="form-group">
-      <input type="text" class="form-control">
+    <form @submit.prevent="addArticle" class="mb-3">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Title" v-model="article.title">
+      </div>
+      <div class="form-group">
+        <textarea type="text" class="form-control" placeholder="Body" v-model="article.body"></textarea>
+      </div>
+      <button type="submit" name="button" class="btn btn-light btn-block">Save</button>
     </form>
     <nav aria-label="Page navigation example">
       <ul class="pagination">
@@ -70,6 +76,28 @@
             this.fetchArticles();
           })
           .catch(err => console.log(err));
+        }
+      },
+      addArticle() {
+        if(this.edit === false) {
+          //addArticle
+          fetch('api/article',{
+            method: 'post',
+            body: JSON.stringigy(this.article),
+            headers: {
+              'content-type': 'application/json'
+            }
+          })
+          .then(res=> res.json())
+          .then(data => {
+            this.article.title = "";
+            this.article.body = "";
+            alert('Article Added')
+            this.fetchArticles();
+          })
+          .catch(err => console.log(err))
+        } else {
+          //update
         }
       }
     }
