@@ -1,6 +1,9 @@
 <template>
   <div>
     <h2 class="mb-2">Articles</h2>
+    <form class="form-group">
+      <input type="text" class="form-control">
+    </form>
     <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li v-bind:class="[{disabled: !pagination.prev_page_url}]" class="page-item"><a class="page-link" href="#" @click="fetchArticles(pagination.prev_page_url)">Previous</a></li>
@@ -66,7 +69,7 @@
             alert('Article Removed');
             this.fetchArticles();
           })
-          .catch(err = console.log(err));
+          .catch(err => console.log(err));
         }
       }
     }

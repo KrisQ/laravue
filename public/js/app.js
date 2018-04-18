@@ -47319,6 +47319,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -47373,7 +47376,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }).then(function (data) {
           alert('Article Removed');
           _this2.fetchArticles();
-        }).catch(err = console.log(err));
+        }).catch(function (err) {
+          return console.log(err);
+        });
       }
     }
   }
@@ -47391,6 +47396,8 @@ var render = function() {
     "div",
     [
       _c("h2", { staticClass: "mb-2" }, [_vm._v("Articles")]),
+      _vm._v(" "),
+      _vm._m(0),
       _vm._v(" "),
       _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
         _c("ul", { staticClass: "pagination" }, [
@@ -47487,7 +47494,16 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("form", { staticClass: "form-group" }, [
+      _c("input", { staticClass: "form-control", attrs: { type: "text" } })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
