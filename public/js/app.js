@@ -47330,6 +47330,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -47396,7 +47403,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         //addArticle
         fetch('api/article', {
           method: 'post',
-          body: JSON.stringigy(this.article),
+          body: JSON.stringify(this.article),
           headers: {
             'content-type': 'application/json'
           }
@@ -47412,7 +47419,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
       } else {
         //update
+        fetch('api/article', {
+          method: 'put',
+          body: JSON.stringify(this.article),
+          headers: {
+            'content-type': 'application/json'
+          }
+        }).then(function (res) {
+          return res.json();
+        }).then(function (data) {
+          _this3.article.title = "";
+          _this3.article.body = "";
+          alert('Article Updated');
+          _this3.fetchArticles();
+        }).catch(function (err) {
+          return console.log(err);
+        });
       }
+    },
+    editArticle: function editArticle(article) {
+      this.edit = true;
+      this.article.id = article.id, this.article.article_id = article.id, this.article.title = article.title, this.article.body = article.body;
     }
   }
 });
@@ -47577,18 +47604,37 @@ var render = function() {
             _vm._v(" "),
             _c("hr"),
             _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-danger",
-                on: {
-                  click: function($event) {
-                    _vm.deleteArticle(article.id)
-                  }
-                }
-              },
-              [_vm._v("DELETE")]
-            )
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-6" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger btn-block",
+                    on: {
+                      click: function($event) {
+                        _vm.deleteArticle(article.id)
+                      }
+                    }
+                  },
+                  [_vm._v("DELETE")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success btn-block",
+                    on: {
+                      click: function($event) {
+                        _vm.editArticle(article)
+                      }
+                    }
+                  },
+                  [_vm._v("EDIT")]
+                )
+              ])
+            ])
           ]
         )
       })

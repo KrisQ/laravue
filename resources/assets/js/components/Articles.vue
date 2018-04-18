@@ -21,7 +21,14 @@
       <h3>{{article.title}}</h3>
       <p>{{article.body}}</p>
       <hr>
-      <button class="btn btn-danger" @click="deleteArticle(article.id)">DELETE</button>
+      <div class="row">
+        <div class="col-md-6">
+          <button class="btn btn-danger btn-block" @click="deleteArticle(article.id)">DELETE</button>
+        </div>
+        <div class="col-md-6">
+          <button class="btn btn-success btn-block" @click="editArticle(article)">EDIT</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -83,7 +90,7 @@
           //addArticle
           fetch('api/article',{
             method: 'post',
-            body: JSON.stringigy(this.article),
+            body: JSON.stringify(this.article),
             headers: {
               'content-type': 'application/json'
             }
@@ -98,7 +105,29 @@
           .catch(err => console.log(err))
         } else {
           //update
+          fetch('api/article',{
+            method: 'put',
+            body: JSON.stringify(this.article),
+            headers: {
+              'content-type': 'application/json'
+            }
+          })
+          .then(res=> res.json())
+          .then(data => {
+            this.article.title = "";
+            this.article.body = "";
+            alert('Article Updated')
+            this.fetchArticles();
+          })
+          .catch(err => console.log(err))
         }
+      },
+      editArticle(article) {
+        this.edit = true;
+        this.article.id = article.id,
+        this.article.article_id = article.id,
+        this.article.title = article.title,
+        this.article.body = article.body
       }
     }
   };
