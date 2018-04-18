@@ -47599,6 +47599,7 @@ var render = function() {
           { key: article.id, staticClass: "card card-body mb-2" },
           [
             _c("h3", [_vm._v(_vm._s(article.title))]),
+            _c("p", [_vm._v("by : " + _vm._s(article.user.name))]),
             _vm._v(" "),
             _c("p", [_vm._v(_vm._s(article.body))]),
             _vm._v(" "),

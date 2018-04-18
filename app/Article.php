@@ -7,4 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     //
+    public function User(){
+      return $this->belongsTo('App\User');
+    }
 }

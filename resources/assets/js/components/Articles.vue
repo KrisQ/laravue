@@ -18,7 +18,7 @@
       </ul>
     </nav>
     <div class="card card-body mb-2" v-for="article in articles" v-bind:key="article.id">
-      <h3>{{article.title}}</h3>
+      <h3>{{article.title}}</h3><p>by : {{article.user.name}}</p>
       <p>{{article.body}}</p>
       <hr>
       <div class="row">
@@ -41,7 +41,7 @@
         article : {
           id: '',
           title: '',
-          body: ''
+          body: '',
         },
         article_id: '',
         pagination: {},
